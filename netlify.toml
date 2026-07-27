@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Proxy Supabase HTTP API through Netlify HTTPS to avoid Mixed Content errors
+[[redirects]]
+  from = "/supabase/*"
+  to = "http://31.97.24.7:8005/:splat"
+  status = 200
+  force = true
+
+# Route fallback for React Router SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

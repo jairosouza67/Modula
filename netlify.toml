@@ -1,16 +1,9 @@
 [build]
   command = "npm run build"
-  publish = "dist"
+  publish = "dist/client"
 
-# Proxy Supabase HTTP API through Netlify HTTPS to avoid Mixed Content errors
-[[redirects]]
-  from = "/supabase/*"
-  to = "http://31.97.24.7:8005/:splat"
-  status = 200
-  force = true
+[functions]
 
-# Route fallback for React Router SPA (Single Page Application)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Note: The Netlify Vite plugin for TanStack Start handles redirects automatically
+# via the generated function config, but we specify the publish directory here
+# to ensure Netlify knows where the static assets (JS, CSS, images) are located.

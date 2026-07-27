@@ -1,0 +1,3 @@
+ALTER TABLE clientes ADD COLUMN IF NOT EXISTS email text;
+ALTER TABLE clientes ADD COLUMN IF NOT EXISTS telefone text;
+ALTER TABLE clientes ADD COLUMN IF NOT EXISTS endereco text;

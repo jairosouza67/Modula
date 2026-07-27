@@ -8,14 +8,22 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-docs
 dist
 dist-ssr
-.env*
+.output
+.vinxi
+.tanstack/**
+.nitro
 *.local
-dev-dist
-*.mjs
-lint_output.txt
+
+# Wrangler / Cloudflare
+.wrangler/
+.dev.vars
+
+# Editor directories and files
+.env
+.env.local
+.env.*.local
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -26,3 +34,15 @@ lint_output.txt
 *.sln
 *.sw?
 
+# Local Netlify folder
+.netlify
+
+# vite-plugin-pwa dev cache
+dev-dist
+
+# Coverage reports
+coverage
+
+# Test reports
+playwright-report
+test-results

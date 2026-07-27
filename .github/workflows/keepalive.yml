@@ -1,0 +1,51 @@
+# ============================================
+# GitHub Actions: Supabase Keepalive
+# Executa a cada 24h para manter o banco ativo
+# ============================================
+
+name: Supabase Keepalive
+
+on:
+  schedule:
+    # Executa todo dia às 09:00 UTC (06:00 BRT)
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    # Permite execução manual pelo GitHub UI
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verificar secrets obrigatórios
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ]; then
+            echo "❌ ERRO: Secret SUPABASE_URL não está configurado!"
+            echo "   Acesse: Settings > Secrets > Actions e adicione SUPABASE_URL"
+            exit 1
+          fi
+          if [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "❌ ERRO: Secret SUPABASE_SERVICE_ROLE_KEY não está configurado!"
+            echo "   Acesse: Settings > Secrets > Actions e adicione SUPABASE_SERVICE_ROLE_KEY"
+            exit 1
+          fi
+          echo "✅ Secrets configurados corretamente."
+
+
+      - name: Executar keepalive
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/keepalive.mjs

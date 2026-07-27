@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <rect width="48" height="48" rx="6" fill="white"/>
+  <!-- Gray outlined square -->
+  <rect x="11" y="3" width="20" height="20" rx="2" stroke="#666666" stroke-width="2" fill="none"/>
+  <!-- Green outlined rectangle -->
+  <rect x="3" y="15" width="22" height="14" rx="2" stroke="#1B9E3E" stroke-width="2" fill="none"/>
+  <!-- Green filled square with V -->
+  <rect x="24" y="16" width="22" height="22" rx="2" fill="#1B9E3E"/>
+  <path d="M30 22 L35 36 L40 22" stroke="#CCCCCC" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(1,1)"/>
+  <path d="M30 22 L35 36 L40 22" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Dark gray filled square with rounded white square -->
+  <rect x="12" y="26" width="18" height="18" rx="2" fill="#555555"/>
+  <rect x="18" y="32" width="10" height="10" rx="3" stroke="white" stroke-width="2.5" fill="none"/>
+</svg>

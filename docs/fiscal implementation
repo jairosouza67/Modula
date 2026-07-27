@@ -1,0 +1,387 @@
+# Integração Real com SEFAZ — Emissão de NF-e no VidraERP
+
+## O que isso significa na prática
+
+Integrar com a SEFAZ de verdade significa que suas notas fiscais vão ter:
+- **Valor legal** — acobertam o trânsito de mercadorias e serviços
+- **Chave de acesso real** (44 dígitos) registrada na Receita Federal
+- **Protocolo de autorização** retornado pela SEFAZ-BA
+- **XML assinado digitalmente** com seu certificado A1
+- **QR Code** válido para consulta pelo consumidor
+- **DANFE** imprimível que acompanha a mercadoria
+
+---
+
+## ⚠️ Pré-Requisitos Legais (O que você precisa ANTES de qualquer código)
+
+> [!CAUTION]
+> Esses requisitos são **obrigatórios por lei**. Sem eles, nenhuma integração técnica funciona.
+
+### 1. Inscrição Estadual (IE) na SEFAZ-BA
+- A vidraçaria precisa ter Inscrição Estadual ativa no Estado da Bahia
+- Mesmo MEI com atividade de venda de produtos (vidros, espelhos) precisa de IE
+- **Como obter:** Portal da SEFAZ-BA → [sefaz.ba.gov.br](https://www.sefaz.ba.gov.br) → Inscrição Estadual
+- Prazo: 5–15 dias úteis
+
+### 2. Credenciamento para Emissão de NF-e na SEFAZ-BA
+- Após ter IE, é necessário fazer o credenciamento no sistema de NF-e
+- Feito pelo portal da SEFAZ-BA com login do e-CAC ou certificado digital
+- O credenciamento libera sua empresa para transmitir notas
+
+### 3. Certificado Digital A1 (e-CNPJ)
+- Tipo: **A1** (arquivo `.pfx` / `.p12`)
+- Validade: 1 ou 3 anos
+- **Onde comprar** (ACs credenciadas ICP-Brasil):
+  - Certisign, Serasa Experian, Soluti, Safeweb
+  - Custo: R$ 100–300/ano
+- **Processo:** Compra online + videoconferência para validação de identidade
+- O arquivo `.pfx` + senha são usados para assinar os XMLs digitalmente
+
+### 4. Regime Tributário Correto
+Para emissão de NF-e como Simples Nacional (vidraçaria):
+- **CSOSN 400** — Tributado pelo Simples Nacional sem permissão de crédito
+- **CFOP 5102** — Venda de mercadoria adquirida ou recebida de terceiros (produto pronto)
+- **CFOP 5124** — Venda de mercadoria efetuada para consumidor final
+- Confirme com seu contador qual CFOP e CSOSN se aplicam à sua atividade
+
+---
+
+## Abordagem Técnica: Duas Opções
+
+### Opção A — API de Terceiros: Focus NFe ⭐ RECOMENDADA
+
+**Por que é a melhor opção para o VidraERP:**
+- Zero manutenção de infraestrutura fiscal
+- Atualizações automáticas de Notas Técnicas da SEFAZ
+- API REST em JSON (sem XML, sem SOAP, sem bibliotecas pesadas)
+- Contingência automática
+- Envio de e-mail ao cliente integrado
+- Armazenamento legal de XMLs por 5 anos
+
+**Custo:**
+| Plano | Preço | Incluso |
+|---|---|---|
+| Solo | R$ 89,90/mês | 1 CNPJ + 100 notas/mês |
+| Start | R$ 113,90/mês | 3 CNPJs + 100 notas/mês |
+
+Para uma vidraçaria pequena, o plano **Solo (R$89,90/mês)** é suficiente.
+
+**Endpoints Focus NFe:**
+- Homologação: `https://homologacao.focusnfe.com.br/v2/`
+- Produção: `https://api.focusnfe.com.br/v2/`
+- Autenticação: Basic Auth com token da API no campo usuário
+
+---
+
+### Opção B — Biblioteca Open Source: NFeWizard-io
+
+**Vantagem:** Gratuito, controle total do processo.  
+**Desvantagem:** Alta complexidade — requer manutenção quando a SEFAZ lança novas Notas Técnicas, tratar XML, SOAP, certificado, etc.
+
+> [!WARNING]
+> A Opção B com Supabase Edge Functions tem limitações: as Edge Functions rodam em Deno (não Node.js puro), têm timeout de 60s e não suportam JDK. Exigiria um microserviço Node.js separado rodando em servidor próprio (VPS/Railway/Render).
+
+**Para o VidraERP, recomendo a Opção A (Focus NFe).** O custo de R$90/mês é menor que o custo de desenvolvimento e manutenção da Opção B.
+
+---
+
+## Arquitetura Técnica (Opção A — Focus NFe)
+
+```
+Frontend (React)
+    │
+    │ POST /emitir-nfe
+    ▼
+Supabase Edge Function: "emitir-nfe"
+    │  1. Valida dados
+    │  2. Busca dados da empresa no Supabase
+    │  3. Monta JSON da NF-e
+    │  4. Chama Focus NFe API (POST /nfe)
+    │  5. Salva referência no Supabase
+    │  6. Retorna status para o frontend
+    ▼
+Focus NFe API
+    │
+    │  Processa assinatura + transmissão SEFAZ-BA
+    ▼
+SEFAZ-BA (Webservice NFeAutorizacao4)
+    │
+    │  Retorna protocolo de autorização
+    ▼
+Supabase Edge Function: "webhook-nfe" (via Focus webhook)
+    │  1. Recebe notificação de autorização
+    │  2. Atualiza nfe_saida com chave_acesso, xml_autorizado, protocolo
+    │  3. Notifica frontend via Supabase Realtime
+    ▼
+Frontend atualiza status da NF-e em tempo real
+```
+
+---
+
+## Campos Fiscais para Vidraçaria
+
+### Tabela NCM × CEST para os principais produtos
+
+| Produto | NCM | CEST | Observação |
+|---|---|---|---|
+| Vidro Float | `7005.10.00` | `10.035.00` | Principal produto |
+| Vidro Temperado | `7007.19.00` | `10.036.00` | — |
+| Vidro Laminado | `7007.29.00` | `10.037.00` | — |
+| Espelho | `7009.91.00` | `10.080.00` | — |
+| Box de Banheiro | `7020.00.00` | — | Produto manufaturado |
+| Serviço de Instalação | `8302.42.00` | — | Acessórios |
+
+> [!IMPORTANT]
+> Confirme os NCMs com seu contador — a classificação fiscal depende da forma de venda (produto pronto vs. sob medida) e pode impactar o ICMS-ST.
+
+### Campos da NF-e que precisam ser adicionados ao cadastro
+
+**Na tabela `empresas`** (já existe, precisamos adicionar colunas):
+- `inscricao_estadual` TEXT
+- `codigo_municipio` INTEGER (código IBGE — Livramento de Nossa Senhora: 2919405)
+- `crt` INTEGER (1=Simples Nacional, 3=Regime Normal)
+- `foco_nfe_token` TEXT (chave da API Focus NFe — armazenar como secret)
+
+**Na tabela `produtos`** (já existe, precisamos adicionar colunas):
+- `ncm` TEXT (8 dígitos, ex: "70051000")
+- `cest` TEXT (opcional, ex: "1003500")
+- `cfop` TEXT (ex: "5102")
+- `unidade_tributavel` TEXT (ex: "M2", "UN", "KG")
+
+**Na tabela `nfe_saida`** (já existe, precisamos adicionar colunas):
+- `chave_acesso` já existe ✅
+- `protocolo_autorizacao` TEXT
+- `xml_autorizado` TEXT
+- `xml_cancelamento` TEXT
+- `focus_nfe_ref` TEXT (referência da nota na API Focus)
+- `danfe_url` TEXT (URL do PDF gerado pela Focus)
+- `data_autorizacao` TIMESTAMPTZ
+
+---
+
+## Plano de Implementação em 5 Fases
+
+### FASE 1 — Preparação Legal e Configuração (Sem código)
+
+**Tempo estimado: 1–3 semanas (depende da SEFAZ)**
+
+- [ ] Verificar se a empresa tem Inscrição Estadual ativa na SEFAZ-BA
+- [ ] Fazer credenciamento para emissão de NF-e no portal SEFAZ-BA
+- [ ] Adquirir Certificado Digital A1 (e-CNPJ) em AC credenciada
+- [ ] Criar conta na Focus NFe (30 dias grátis): [focusnfe.com.br](https://focusnfe.com.br)
+- [ ] Obter token de API da Focus NFe (ambiente de homologação)
+- [ ] Confirmar com contador: NCM dos produtos, regime tributário, CSOSN, CFOP
+
+---
+
+### FASE 2 — Banco de Dados e Configurações (1–2 dias de código)
+
+**Arquivos a criar/modificar:**
+
+#### [NEW] `supabase/migrations/20260701_nfe_sefaz_campos.sql`
+```sql
+-- Campos fiscais na tabela empresas
+ALTER TABLE empresas
+  ADD COLUMN IF NOT EXISTS inscricao_estadual TEXT,
+  ADD COLUMN IF NOT EXISTS codigo_municipio INTEGER DEFAULT 2919405,
+  ADD COLUMN IF NOT EXISTS crt INTEGER DEFAULT 1; -- 1 = Simples Nacional
+
+-- Campos fiscais na tabela produtos
+ALTER TABLE produtos
+  ADD COLUMN IF NOT EXISTS ncm TEXT,
+  ADD COLUMN IF NOT EXISTS cest TEXT,
+  ADD COLUMN IF NOT EXISTS cfop TEXT DEFAULT '5102',
+  ADD COLUMN IF NOT EXISTS unidade_tributavel TEXT DEFAULT 'UN';
+
+-- Campos de autorização SEFAZ na nfe_saida
+ALTER TABLE nfe_saida
+  ADD COLUMN IF NOT EXISTS protocolo_autorizacao TEXT,
+  ADD COLUMN IF NOT EXISTS xml_autorizado TEXT,
+  ADD COLUMN IF NOT EXISTS xml_cancelamento TEXT,
+  ADD COLUMN IF NOT EXISTS focus_nfe_ref TEXT,
+  ADD COLUMN IF NOT EXISTS danfe_url TEXT,
+  ADD COLUMN IF NOT EXISTS data_autorizacao TIMESTAMPTZ,
+  ADD COLUMN IF NOT EXISTS motivo_rejeicao TEXT;
+
+-- Secret do token Focus NFe (por empresa)
+CREATE TABLE IF NOT EXISTS empresa_secrets (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  empresa_id UUID NOT NULL REFERENCES empresas(id),
+  chave TEXT NOT NULL,  -- ex: 'focus_nfe_token'
+  valor TEXT NOT NULL,
+  criado_em TIMESTAMPTZ DEFAULT now()
+);
+-- RLS: apenas service_role pode ler
+ALTER TABLE empresa_secrets ENABLE ROW LEVEL SECURITY;
+CREATE POLICY empresa_secrets_service_only ON empresa_secrets
+  USING (auth.role() = 'service_role');
+```
+
+---
+
+### FASE 3 — Supabase Edge Functions (3–5 dias de código)
+
+#### [NEW] `supabase/functions/emitir-nfe/index.ts`
+
+Responsabilidades:
+1. Receber dados da nota (os_id, itens, cliente)
+2. Buscar dados da empresa (IE, CNPJ, endereço, CRT, token Focus NFe)
+3. Montar JSON no formato Focus NFe
+4. Chamar `POST https://homologacao.focusnfe.com.br/v2/nfe?ref={uuid}` (ou produção)
+5. Salvar `focus_nfe_ref` na tabela `nfe_saida` com status `EM_PROCESSAMENTO`
+6. Retornar imediatamente (processamento é assíncrono)
+
+**Estrutura do JSON para Focus NFe:**
+```json
+{
+  "natureza_operacao": "Venda de mercadoria",
+  "forma_pagamento": 0,
+  "tipo_documento": 1,
+  "local_destino": 1,
+  "data_emissao": "2026-07-01T10:00:00-03:00",
+  "tipo_operacao": 1,
+  "finalidade_emissao": 1,
+  "consumidor_final": 1,
+  "presenca_comprador": 1,
+  "emitente": {
+    "cnpj": "14032864000108",
+    "nome": "VIDRAÇARIA ORNAMENTAL LTDA",
+    "logradouro": "Av. Gil Ferreira Pessoa",
+    "numero": "70",
+    "bairro": "Matinha",
+    "municipio": "Livramento de Nossa Senhora",
+    "uf": "BA",
+    "cep": "46160000",
+    "regime_tributario": 1,
+    "inscricao_estadual": "123456789"
+  },
+  "destinatario": {
+    "cpf_cnpj": "12345678900",
+    "nome": "João da Silva",
+    "email": "joao@email.com",
+    "logradouro": "...",
+    "indicador_inscricao_estadual": 9
+  },
+  "items": [{
+    "numero_item": 1,
+    "codigo_produto": "VID-001",
+    "descricao": "Vidro Float 4mm 1,20x1,00m",
+    "codigo_ncm": "70051000",
+    "codigo_cest": "1003500",
+    "cfop": "5102",
+    "unidade_comercial": "M2",
+    "quantidade_comercial": 1.2,
+    "valor_unitario_comercial": 85.00,
+    "valor_bruto": 102.00,
+    "origem_mercadoria": 0,
+    "situacao_tributaria": "400",
+    "icms_csosn": "400"
+  }],
+  "formas_pagamento": [{
+    "forma_pagamento": "01",
+    "valor_pagamento": 102.00
+  }]
+}
+```
+
+#### [NEW] `supabase/functions/webhook-nfe/index.ts`
+
+Responsabilidades:
+1. Receber webhook da Focus NFe com status da nota
+2. Se autorizada: salvar `protocolo_autorizacao`, `xml_autorizado`, `danfe_url`, `data_autorizacao`, status `EMITIDA`
+3. Se rejeitada: salvar `motivo_rejeicao`, status `DENEGADA`
+4. Disparar notificação via Supabase Realtime para o frontend
+
+---
+
+### FASE 4 — Frontend (2–3 dias de código)
+
+#### [MODIFY] `src/hooks/useFiscalData.ts`
+- `useEmitirNfe`: Agora chama a Edge Function `emitir-nfe` em vez de inserir direto no banco
+- `usePollNfeStatus`: Hook com polling a cada 5s para verificar status quando `EM_PROCESSAMENTO`
+- Adicionar `useDownloadDanfe`: abre URL do DANFE em nova aba
+
+#### [MODIFY] `src/routes/_app.fiscal.tsx`
+- Status `EM_PROCESSAMENTO` com spinner de carregamento
+- Botão "Baixar DANFE" quando nota estiver autorizada (usa `danfe_url`)
+- Badge com chave de acesso (44 dígitos)
+
+#### [MODIFY] `src/components/features/fiscal/ModalEmitirNfe.tsx`
+- Adicionar campos de forma de pagamento (Dinheiro, PIX, Cartão, etc.)
+- Campo de endereço do destinatário (obrigatório para NF-e)
+- Campo de CPF/CNPJ do cliente (obrigatório para SEFAZ)
+
+#### [MODIFY] `src/routes/_app.config.tsx` (ou nova aba de configuração fiscal)
+- Formulário para inserir token Focus NFe da empresa
+- Campos de NCM por produto (no cadastro de produtos)
+- Campo de Inscrição Estadual da empresa
+
+---
+
+### FASE 5 — Testes em Homologação (1 semana)
+
+1. Configurar token de **homologação** da Focus NFe
+2. Emitir notas de teste com CNPJ real mas em ambiente de teste
+3. Verificar XML autorizado no portal Focus NFe
+4. Testar cancelamento de nota
+5. Testar webhook de retorno
+6. Quando tudo funcionar: trocar para token de **produção**
+
+---
+
+## Sequência de Ações Concretas
+
+### Esta Semana (o que você faz agora — sem código)
+
+1. **Verificar IE da empresa:** Acesse [sefaz.ba.gov.br](https://www.sefaz.ba.gov.br) e confirme que a empresa tem Inscrição Estadual
+2. **Criar conta Focus NFe:** [focusnfe.com.br](https://www.focusnfe.com.br) → 30 dias grátis
+3. **Comprar Certificado A1:** Se ainda não tiver, compre um e-CNPJ A1 em Certisign/Serasa
+4. **Falar com contador:** Confirmar NCM dos vidros vendidos, CFOP aplicável, CSOSN
+
+### Próxima Semana (código — Fase 2 e 3)
+- Rodar migration com novos campos
+- Criar Edge Functions `emitir-nfe` e `webhook-nfe`
+- Configurar webhook URL no painel da Focus NFe
+
+### Semana 3 (código — Fase 4)
+- Atualizar frontend para usar Edge Function
+- Adicionar botão DANFE
+- Testes em homologação
+
+### Semana 4 (go live)
+- Trocar para token de produção
+- Emitir primeira nota real
+
+---
+
+## Custo Total de Implementação
+
+| Item | Custo | Frequência |
+|---|---|---|
+| Certificado Digital A1 (e-CNPJ) | R$ 100–300 | Anual |
+| Focus NFe Plano Solo | R$ 89,90 | Mensal |
+| Inscrição Estadual | Gratuito | Única vez |
+| Credenciamento SEFAZ-BA | Gratuito | Única vez |
+| **Total mensal em produção** | **~R$ 90/mês** | |
+
+---
+
+## Riscos e Mitigações
+
+| Risco | Probabilidade | Mitigação |
+|---|---|---|
+| Demora no credenciamento SEFAZ | Alta | Iniciar o processo imediatamente |
+| Rejeição de nota por NCM errado | Média | Validar com contador antes |
+| Instabilidade SEFAZ-BA | Baixa | Focus NFe tem contingência automática |
+| Mudança de Nota Técnica | Alta (anual) | Focus NFe gerencia automaticamente |
+| Timeout Edge Function | Baixa | Processamento assíncrono (webhook) |
+
+---
+
+## Referências Técnicas
+
+- **Endpoints SEFAZ-BA Produção:** `https://nfe.sefaz.ba.gov.br/webservices/NFeAutorizacao4/NFeAutorizacao4.asmx`
+- **Endpoints SEFAZ-BA Homologação:** `https://hnfe.sefaz.ba.gov.br/webservices/`
+- **Documentação Focus NFe:** [doc.focusnfe.com.br](https://doc.focusnfe.com.br)
+- **Portal NF-e Nacional:** [nfe.fazenda.gov.br](https://www.nfe.fazenda.gov.br)
+- **Manual do Contribuinte NF-e 4.0:** Disponível no portal da SEFAZ-BA

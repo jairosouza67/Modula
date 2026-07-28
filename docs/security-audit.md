@@ -1,4 +1,4 @@
-# 🔒 Auditoria de Segurança — Vidraçaria Ornamental
+# 🔒 Auditoria de Segurança — ModulaAPP
 
 > **Data:** 25 de Junho de 2026  
 > **Escopo:** Código-fonte completo (frontend TanStack Start + Supabase)  
@@ -8,7 +8,7 @@
 
 ## Sumário Executivo
 
-Esta auditoria analisou a segurança do sistema Vidraçaria Ornamental, identificando **15 vulnerabilidades** divididas entre críticas, altas, médias e baixas. O sistema possui boas práticas como RLS (Row Level Security) no banco, módulo LGPD e controle de acesso baseado em papéis, mas carece de **defesa em profundidade** — várias funções de segurança existem no código mas não são efetivamente utilizadas.
+Esta auditoria analisou a segurança do sistema ModulaAPP, identificando **15 vulnerabilidades** divididas entre críticas, altas, médias e baixas. O sistema possui boas práticas como RLS (Row Level Security) no banco, módulo LGPD e controle de acesso baseado em papéis, mas carece de **defesa em profundidade** — várias funções de segurança existem no código mas não são efetivamente utilizadas.
 
 ### Resumo por Severidade
 
@@ -49,7 +49,7 @@ O modo `mock` de autenticação armazena usuários com senhas em texto puro no `
 **Arquivo:** `src/lib/auth/storage.ts`
 
 ```typescript
-const AUTH_SESSION_KEY = "vidraerp:auth:session";
+const AUTH_SESSION_KEY = "modulaapp:auth:session";
 export const setStoredSession = (session: AuthSession): void => {
   writeJson(AUTH_SESSION_KEY, session); // localStorage.setItem
 };

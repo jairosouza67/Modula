@@ -40,7 +40,7 @@
 
 1. No painel da Focus NFe, clique em **Configurações → Tokens de API**
 2. Clique em **"Novo Token"**
-3. Dê um nome (ex: `VidraERP`)
+3. Dê um nome (ex: `ModulaAPP`)
 4. Selecione o ambiente:
    - **Homologação** → para testes (use primeiro!)
    - **Produção** → para notas reais (só depois de testar)
@@ -72,9 +72,9 @@ O webhook é o que avisa o sistema quando a SEFAZ autoriza a nota.
 
 ---
 
-## PASSO 5 — Inserir o Token no VidraERP
+## PASSO 5 — Inserir o Token no ModulaAPP
 
-1. Abra o sistema VidraERP
+1. Abra o sistema ModulaAPP
 2. Vá em **Configurações** (menu lateral)
 3. Clique na aba **"Fiscal"**
 4. Cole o token gerado no campo **"Token Focus NFe"**

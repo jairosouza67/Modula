@@ -15,7 +15,7 @@ describe('eSocial Unit Tests (ESOC-01 to ESOC-06)', () => {
     expect(calculateFGTS(2000, 500)).toBe(200);
   });
 
-  it('ESOC-06: should identify DAS Anexo III for vidraçaria', () => {
+  it('ESOC-06: should identify DAS Anexo III for comércio e serviços', () => {
     expect(getDASAnexo(100000)).toContain('Anexo III');
   });
 });

@@ -10,10 +10,10 @@ insert into public.empresas (
 )
 values (
   '00000000-0000-0000-0000-000000000001',
-  'Vidraçaria TOP',
-  'Vidraçaria TOP Vidracaria Ltda',
+  'ModulaAPP',
+  'ModulaAPP Ltda',
   '12.345.678/0001-90',
-  'Av. das Vidracarias, 1000 - Sao Paulo / SP',
+  'Av. Principal, 1000 - Sao Paulo / SP',
   'Sao Paulo - SP',
   '(11) 99999-9999',
   'A1 - valido ate 12/2026'

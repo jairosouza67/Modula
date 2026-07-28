@@ -60,7 +60,7 @@ import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 export const Route = createFileRoute("/_app/pedidos")({
   head: () => ({
     meta: [
-      { title: "Pedidos / OS — Vidraçaria Ornamental" },
+      { title: "Pedidos / OS — ModulaAPP" },
       { name: "description", content: "Central de controle de todas as ordens de serviço ativas." },
     ],
   }),

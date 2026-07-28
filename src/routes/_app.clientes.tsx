@@ -88,7 +88,7 @@ const formatDate = (value: string | null): string => {
 export const Route = createFileRoute("/_app/clientes")({
   head: () => ({
     meta: [
-      { title: "Clientes — Vidraçaria Ornamental" },
+      { title: "Clientes — ModulaAPP" },
       { name: "description", content: "Cadastro e gestão de relacionamento com clientes." },
     ],
   }),

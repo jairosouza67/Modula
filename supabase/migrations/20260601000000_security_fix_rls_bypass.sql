@@ -83,7 +83,7 @@ GRANT EXECUTE ON FUNCTION public.current_empresa_id() TO anon, authenticated, se
 -- VALUES (
 --   'SEU_USER_ID_AQUI',
 --   '00000000-0000-0000-0000-000000000001',
---   'admin@vidraerp.com',
+--   'admin@modulaapp.com',
 --   'Administrador',
 --   'superadmin'
 -- )

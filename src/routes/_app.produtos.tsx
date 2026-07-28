@@ -90,7 +90,7 @@ type ProductFormValues = z.infer<typeof productFormSchema>;
 export const Route = createFileRoute("/_app/produtos")({
   head: () => ({
     meta: [
-      { title: "Produtos — Vidraçaria Ornamental" },
+      { title: "Produtos — ModulaAPP" },
       {
         name: "description",
         content: "Gerenciamento do catálogo de produtos e tabelas de preços.",

@@ -1,4 +1,4 @@
-# 🔍 Relatório de Auditoria — VidraSystem
+# 🔍 Relatório de Auditoria — ModulaSystem
 
 > **Data:** 03/07/2026
 > **Base:** Análise do usuário em `ANALISE.md` + inspeção de código completa
@@ -50,7 +50,7 @@ serve(async (req) => {
 // Linhas 162-177: fallbacks hardcoded para dados fiscais reais
 emitente: {
   cnpj: String(empresa?.cnpj || "").replace(/\D/g, "") || "14032864000108",
-  nome: empresa?.razao_social || empresa?.nome_fantasia || "MARMORARIA ORNAMENTAL",
+  nome: empresa?.razao_social || empresa?.nome_fantasia || "MODULAAPP",
   logradouro: empresa?.logradouro || "Avenida Gil Ferreira Pessoa",
   numero: empresa?.numero_endereco || "70",
   inscricao_estadual: empresa?.inscricao_estadual || "096918958",
@@ -161,7 +161,7 @@ export const getDefaultEmpresaId = (): string => {
 **Abrangência:** 9 de 10 Edge Functions (todas exceto `webhook-nfe` que nem tem CORS handler)
 
 **Pode implementar sem quebrar?** ✅ SIM
-- Substituir `"*"` pelo domínio real do app (ex: `https://vidraerp.netlify.app`) 
+- Substituir `"*"` pelo domínio real do app (ex: `https://modulaapp.netlify.app`) 
 - Adicionar variável de ambiente `SITE_URL` ou `ALLOWED_ORIGINS`
 - Em dev, pode manter `*` ou usar `localhost:3000`
 - **Zero risco de quebra** se o domínio for configurado corretamente

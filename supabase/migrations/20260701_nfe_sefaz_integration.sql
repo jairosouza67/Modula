@@ -13,7 +13,7 @@ ALTER TABLE public.empresas
   ADD COLUMN IF NOT EXISTS numero_endereco       TEXT,
   ADD COLUMN IF NOT EXISTS complemento           TEXT;
 
--- Seed com dados reais da Marmoraria Ornamental
+-- Seed com dados reais da ModulaAPP
 UPDATE public.empresas
 SET
   inscricao_estadual  = '096918958',

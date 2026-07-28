@@ -108,7 +108,7 @@ const parsePriceDraft = (draft: PriceDraft): PriceSettings | null => {
 export const Route = createFileRoute("/_app/config")({
   head: () => ({
     meta: [
-      { title: "Configurações — Vidraçaria Ornamental" },
+      { title: "Configurações — ModulaAPP" },
       { name: "description", content: "Parametrização do sistema para a empresa." },
     ],
   }),

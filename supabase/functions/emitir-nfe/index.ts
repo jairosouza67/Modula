@@ -162,7 +162,7 @@ serve(async (req) => {
       itensFocus.push({
         numero_item: 1,
         codigo_produto: "SERVICO-001",
-        descricao: nfe.descricao_itens || "Serviços de vidraçaria",
+        descricao: nfe.descricao_itens || "Serviços contratados",
         codigo_ncm: "70051000",
         cfop: "5102",
         unidade_comercial: "UN",

@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Vidraçaria Ornamental — Módulo Compras — Lógica de Negócio (Fase 2.5)
+// ModulaAPP — Módulo Compras — Lógica de Negócio (Fase 2.5)
 // Sprint 12A: Pedido de Compra, Liberação e Tracker 8 Etapas
 // ─────────────────────────────────────────────────────────────
 

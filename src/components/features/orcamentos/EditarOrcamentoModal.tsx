@@ -37,7 +37,7 @@ import {
 } from "@/lib/sales/resolverServico";
 import {
   calcularValorTotalLinha,
-} from "@/lib/sales/calculadoraVidracaria";
+} from "@/lib/sales/calculadoraModula";
 import { ComponenteKitPanel } from "./ComponenteKitPanel";
 import { useEstoque } from "@/hooks/useEstoque";
 

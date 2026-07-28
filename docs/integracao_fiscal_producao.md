@@ -147,8 +147,8 @@ FISCAL_CERT_PASSWORD=xxx
 
 # E-mail
 RESEND_API_KEY=re_xxx
-EMAIL_FROM=nfe@vidracaria.com.br
-EMAIL_REPLY_TO=contato@vidracaria.com.br
+EMAIL_FROM=nfe@modulaapp.com.br
+EMAIL_REPLY_TO=contato@modulaapp.com.br
 ```
 
 ---

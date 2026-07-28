@@ -96,7 +96,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-center px-2 py-2 border-b border-border/60">
-        <img src="/images/logo-ornamental.png" alt="Vidraçaria Ornamental" className="w-full h-auto" />
+        <img src="/images/logo-modula.png" alt="ModulaAPP" className="w-full h-auto" />
       </div>
       <nav className="flex-1 overflow-y-auto py-1.5">
         {visibleNavGroups.map((group) => (
@@ -160,7 +160,7 @@ export function ErpMobileTopbar() {
         </SheetContent>
       </Sheet>
       <div className="flex items-center gap-2">
-        <img src="/images/logo-ornamental.png" alt="Vidraçaria Ornamental" className="h-9 w-auto" />
+        <img src="/images/logo-modula.png" alt="ModulaAPP" className="h-9 w-auto" />
       </div>
     </header>
   );

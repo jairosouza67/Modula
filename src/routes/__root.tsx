@@ -11,6 +11,8 @@ import { AuthProvider } from "@/lib/auth/context";
 import { PWARegister } from "@/components/PWARegister";
 
 import appCss from "../styles.css?url";
+import { useEffect } from "react";
+import { migrateLegacyStorage } from "@/lib/utils/migrateStorage";
 
 function NotFoundComponent() {
   return (
@@ -74,13 +76,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Vidraçaria Ornamental" },
-      { name: "description", content: "Vidraçaria Ornamental — A natureza cria nós transformamos" },
+      { title: "ModulaAPP" },
+      { name: "description", content: "ModulaAPP — A natureza cria nós transformamos" },
       { name: "author", content: "Jairo" },
-      { property: "og:title", content: "Vidraçaria Ornamental" },
+      { property: "og:title", content: "ModulaAPP" },
       {
         property: "og:description",
-        content: "Vidraçaria Ornamental — A natureza cria nós transformamos",
+        content: "ModulaAPP — A natureza cria nós transformamos",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -127,6 +129,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    migrateLegacyStorage();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

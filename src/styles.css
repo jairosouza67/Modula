@@ -5,10 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition — Vidraçaria Ornamental
+ * Design system definition — ModulaAPP
  *
  * Palette extraída da identidade visual:
- *   Verde Ornamental   #1B9E3E  (primary)
+ *   Verde Modula        #1B9E3E  (primary)
  *   Cinza Escuro        #231F20  (foreground / headings)
  *   Cinza Médio         #6D6E71  (muted text)
  *   Cinza Claro         #A7A9AC  (borders / accents)
@@ -83,8 +83,8 @@
 :root {
   --radius: 0.625rem;
 
-  /* Brand: Vidraçaria Ornamental
-   * Verde Ornamental #1B9E3E → oklch(0.56 0.17 150)
+  /* Brand: ModulaAPP
+   * Verde Modula #1B9E3E → oklch(0.56 0.17 150)
    * Cinza Escuro      #231F20 → oklch(0.20 0.005 20)
    * Cinza Médio        #6D6E71 → oklch(0.52 0.006 250)
    * Cinza Claro        #A7A9AC → oklch(0.72 0.006 250)
@@ -98,7 +98,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.20 0.005 20);
 
-  /* Primary — Verde Ornamental */
+  /* Primary — Verde Modula */
   --primary: oklch(0.56 0.17 150);
   --primary-foreground: oklch(0.99 0 0);
   --ring: oklch(0.56 0.17 150);
@@ -120,7 +120,7 @@
   --border: oklch(0.90 0.006 250);
   --input: oklch(0.90 0.006 250);
 
-  /* Charts — paleta harmônica baseada no verde ornamental */
+  /* Charts — paleta harmônica baseada no verde modula */
   --chart-1: oklch(0.56 0.17 150);
   --chart-2: oklch(0.52 0.006 250);
   --chart-3: oklch(0.72 0.006 250);
@@ -160,7 +160,7 @@
   --popover: oklch(0.22 0.005 20);
   --popover-foreground: oklch(0.95 0.003 250);
 
-  /* Primary — Verde Ornamental (mais brilhante no dark) */
+  /* Primary — Verde Modula (mais brilhante no dark) */
   --primary: oklch(0.65 0.18 150);
   --primary-foreground: oklch(0.15 0.005 20);
   --ring: oklch(0.65 0.18 150);

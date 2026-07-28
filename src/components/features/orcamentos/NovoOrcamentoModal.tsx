@@ -38,7 +38,7 @@ import {
 import {
   calcularValorTotalLinha,
   calcularTotalOrcamento as calcularTotalV2,
-} from "@/lib/sales/calculadoraVidracaria";
+} from "@/lib/sales/calculadoraModula";
 import { ComponenteKitPanel } from "./ComponenteKitPanel";
 import { useEstoque } from "@/hooks/useEstoque";
 

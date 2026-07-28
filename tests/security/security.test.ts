@@ -41,7 +41,7 @@ describe("Security Framework (SEC-01 a SEC-08)", () => {
 
     it("should allow safe inputs", () => {
       const inputs = [
-        "Vidraçaria Teste",
+        "ModulaAPP Teste",
         "Rua das Flores, 123",
         "Valor: R$ 1.200,50",
         "Pedido #456",

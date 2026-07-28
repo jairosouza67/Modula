@@ -11,7 +11,7 @@ import type {
 } from "@/hooks/useProdutosOrcamento";
 import type { OrcamentoComponente } from "./types";
 import { resolverServicoComComponentes } from "./resolverServico";
-import { calcularValorTotalLinha } from "./calculadoraVidracaria";
+import { calcularValorTotalLinha } from "./calculadoraModula";
 import { obterImagemKit, carregarImagemBase64 } from "./kitImages";
 
 export const MAX_ITENS_PDF = 23;
@@ -299,7 +299,7 @@ export function montarModeloPdfOrcamento(
       telefone: orcamento.cliente?.telefone ?? "—",
     },
     empresa: {
-      nome: orcamento.empresa?.nome ?? "Vidraçaria Ornamental",
+      nome: orcamento.empresa?.nome ?? "ModulaAPP",
       cnpj: orcamento.empresa?.cnpj ?? "14.032.864/0001-08",
       endereco: orcamento.empresa?.endereco ?? "Av. Gil Ferreira Pessoa, Nº 70 - Matinha",
       cidade: orcamento.empresa?.cidade ?? "Livramento de Nossa Senhora - BA",
@@ -315,7 +315,7 @@ export function montarModeloPdfOrcamento(
  */
 async function carregarLogoBase64(): Promise<string> {
   try {
-    const response = await fetch('/images/logo-ornamental.png');
+    const response = await fetch('/images/logo-modula.png');
     const blob = await response.blob();
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -329,7 +329,7 @@ async function carregarLogoBase64(): Promise<string> {
 
 function logoImgTag(base64: string): string {
   if (!base64) return '';
-  return `<img src="${base64}" alt="Vidraçaria Ornamental" style="width: 220px; height: auto;" />`;
+  return `<img src="${base64}" alt="ModulaAPP" style="width: 220px; height: auto;" />`;
 }
 
 export function renderHtmlOrcamentoProfissional(

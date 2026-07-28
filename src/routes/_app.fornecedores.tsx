@@ -76,7 +76,7 @@ const initialFormState = (): FornecedorFormState => ({
 export const Route = createFileRoute("/_app/fornecedores")({
   head: () => ({
     meta: [
-      { title: "Fornecedores — Vidraçaria Ornamental" },
+      { title: "Fornecedores — ModulaAPP" },
       { name: "description", content: "Gestão de fornecedores de chapas, ferragens, perfis e consumíveis." },
     ],
   }),

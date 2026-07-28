@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS produtos (
   CONSTRAINT uq_produto_codigo_empresa UNIQUE(empresa_id, codigo)
 );
 
-COMMENT ON TABLE produtos IS 'Catálogo de produtos base (vidros, kits, ferragens) — valores extraídos da planilha ORÇ VIDRAÇARIA ATUALIZADO';
+COMMENT ON TABLE produtos IS 'Catálogo de produtos base (vidros, kits, ferragens) — valores extraídos da planilha histórica';
 COMMENT ON COLUMN produtos.codigo IS 'Código do produto: VI8, KA, PX40, etc.';
 COMMENT ON COLUMN produtos.categoria IS 'vidro | kit | ferragem | servico';
 COMMENT ON COLUMN produtos.valor_venda IS 'Valor gerado por fórmula: valor_compra × (1 + margem_lucro) — coluna STORED';

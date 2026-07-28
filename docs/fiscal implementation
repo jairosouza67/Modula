@@ -1,4 +1,4 @@
-# Integração Real com SEFAZ — Emissão de NF-e no VidraERP
+# Integração Real com SEFAZ — Emissão de NF-e no ModulaAPP
 
 ## O que isso significa na prática
 
@@ -50,7 +50,7 @@ Para emissão de NF-e como Simples Nacional (vidraçaria):
 
 ### Opção A — API de Terceiros: Focus NFe ⭐ RECOMENDADA
 
-**Por que é a melhor opção para o VidraERP:**
+**Por que é a melhor opção para o ModulaAPP:**
 - Zero manutenção de infraestrutura fiscal
 - Atualizações automáticas de Notas Técnicas da SEFAZ
 - API REST em JSON (sem XML, sem SOAP, sem bibliotecas pesadas)
@@ -81,7 +81,7 @@ Para uma vidraçaria pequena, o plano **Solo (R$89,90/mês)** é suficiente.
 > [!WARNING]
 > A Opção B com Supabase Edge Functions tem limitações: as Edge Functions rodam em Deno (não Node.js puro), têm timeout de 60s e não suportam JDK. Exigiria um microserviço Node.js separado rodando em servidor próprio (VPS/Railway/Render).
 
-**Para o VidraERP, recomendo a Opção A (Focus NFe).** O custo de R$90/mês é menor que o custo de desenvolvimento e manutenção da Opção B.
+**Para o ModulaAPP, recomendo a Opção A (Focus NFe).** O custo de R$90/mês é menor que o custo de desenvolvimento e manutenção da Opção B.
 
 ---
 
@@ -245,7 +245,7 @@ Responsabilidades:
   "presenca_comprador": 1,
   "emitente": {
     "cnpj": "14032864000108",
-    "nome": "VIDRAÇARIA ORNAMENTAL LTDA",
+    "nome": "MODULAAPP LTDA",
     "logradouro": "Av. Gil Ferreira Pessoa",
     "numero": "70",
     "bairro": "Matinha",

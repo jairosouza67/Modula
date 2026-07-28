@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_app/instalacoes")({
   head: () => ({
     meta: [
-      { title: "Instalações — Vidraçaria Ornamental" },
+      { title: "Instalações — ModulaAPP" },
       { name: "description", content: "Agenda e controle de campo dos instaladores." },
     ],
   }),

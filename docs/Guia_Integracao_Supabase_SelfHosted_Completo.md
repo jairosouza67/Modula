@@ -1,4 +1,4 @@
-# Guia Completo — Integração e Migração do VidraERP para Supabase Self-Hosted
+# Guia Completo — Integração e Migração do ModulaAPP para Supabase Self-Hosted
 
 **Versão:** 1.0  
 **Data:** 2026-07-24  

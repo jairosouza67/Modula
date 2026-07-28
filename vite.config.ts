@@ -71,9 +71,9 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["/images/logo-icon.svg", "/icons/apple-touch-icon.png"],
       manifest: {
-        name: "Vidraçaria Ornamental",
-        short_name: "Ornamental",
-        description: "Vidraçaria Ornamental — A natureza cria nós transformamos",
+        name: "ModulaAPP",
+        short_name: "Modula",
+        description: "ModulaAPP — A natureza cria nós transformamos",
         theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",

@@ -41,7 +41,7 @@ import type { AlertaDashboard } from "@/hooks/useDashboardData";
 export const Route = createFileRoute("/_app/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Vidraçaria Ornamental" },
+      { title: "Dashboard — ModulaAPP" },
       { name: "description", content: "Visão consolidada da vidraçaria em tempo real." },
     ],
   }),

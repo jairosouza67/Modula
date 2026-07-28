@@ -1,4 +1,4 @@
-// Centralized mock data for the Vidraçaria Ornamental frontend.
+// Centralized mock data for the ModulaAPP frontend.
 export type StatusVariant = "success" | "warning" | "danger" | "info" | "neutral";
 
 export const navGroups = [

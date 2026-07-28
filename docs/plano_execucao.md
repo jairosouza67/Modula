@@ -1,4 +1,4 @@
-# Plano de Execução — Remediação de Segurança VidraSystem
+# Plano de Execução — Remediação de Segurança ModulaSystem
 
 > **Gerado em:** 03/07/2026
 > **Base:** `ANALISE.md` (13 itens) + Achado #14 da auditoria
@@ -178,7 +178,7 @@ Por:
 **Pré-requisito:** Configurar a variável de ambiente `ALLOWED_ORIGIN` no painel do Supabase → Edge Functions → Secrets:
 
 ```
-ALLOWED_ORIGIN=https://vidraerp.vercel.app
+ALLOWED_ORIGIN=https://modulaapp.vercel.app
 ```
 
 > [!NOTE]

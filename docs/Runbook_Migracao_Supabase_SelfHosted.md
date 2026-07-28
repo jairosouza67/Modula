@@ -1,4 +1,4 @@
-# Runbook — Migração do VidraERP para Supabase Self-Hosted
+# Runbook — Migração do ModulaAPP para Supabase Self-Hosted
 
 **Objetivo:** criar uma cópia independente do sistema, rodando em infraestrutura própria (Docker/VPS), com todos os dados atuais migrados — **sem tocar no sistema em produção**, que continua rodando normalmente no Supabase Cloud enquanto a nova versão é construída e validada.
 

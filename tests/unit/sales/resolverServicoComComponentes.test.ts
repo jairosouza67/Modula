@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { resolverServicoComComponentes, resolverServico } from "@/lib/sales/resolverServico";
-import { calcularValorTotalLinha } from "@/lib/sales/calculadoraVidracaria";
+import { calcularValorTotalLinha } from "@/lib/sales/calculadoraModula";
 import type { OrcamentoComponente } from "@/lib/sales/types";
 
 describe("resolverServicoComComponentes", () => {

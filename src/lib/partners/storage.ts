@@ -51,8 +51,8 @@ type FornecedorDraft = Omit<FornecedorRecord, "id" | "deletedAt"> & {
   id?: string;
 };
 
-const CLIENTES_KEY = "vidraerp:crm:clientes";
-const FORNECEDORES_KEY = "vidraerp:crm:fornecedores";
+const CLIENTES_KEY = "modulaapp:crm:clientes";
+const FORNECEDORES_KEY = "modulaapp:crm:fornecedores";
 
 const defaultClientes: ClienteRecord[] = [
   {

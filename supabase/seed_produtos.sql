@@ -1,7 +1,7 @@
 -- =============================================================================
 -- Loop 1 — Seed: Catálogo de Produtos e Serviços Compostos
 -- Arquivo: supabase/seed_produtos.sql
--- Base: Planilha ORÇ VIDRAÇARIA ATUALIZADO.xlsm
+-- Base: Planilha de precificação histórica
 -- =============================================================================
 -- ATENÇÃO: Este seed depende de:
 --   1. Migration 20260518_orcamento_produtos aplicada

@@ -4,7 +4,7 @@
 
 ```
 Razão Social:        R. E. C. MARMORARIA E MARCENARIA LTDA
-Nome Fantasia:       MARMORARIA ORNAMENTAL
+Nome Fantasia:       MODULAAPP
 CNPJ:                14.032.864/0001-08  →  "14032864000108"
 Inscrição Estadual:  096.918.958 ME      →  "096918958"
 Endereço:            Av. Gil Ferreira Pessoa, 70, Galpão, Taquari
@@ -61,7 +61,7 @@ ALTER TABLE public.empresas
   ADD COLUMN IF NOT EXISTS numero_endereco       TEXT,
   ADD COLUMN IF NOT EXISTS complemento           TEXT;
 
--- Seed com dados reais da Marmoraria Ornamental
+-- Seed com dados reais da ModulaAPP
 UPDATE public.empresas
 SET
   inscricao_estadual  = '096918958',
@@ -238,7 +238,7 @@ serve(async (req) => {
 
     emitente: {
       cnpj: "14032864000108",
-      nome: empresa?.nome || "MARMORARIA ORNAMENTAL",
+      nome: empresa?.nome || "MODULAAPP",
       logradouro: empresa?.logradouro || "Avenida Gil Ferreira Pessoa",
       numero: empresa?.numero_endereco || "70",
       complemento: empresa?.complemento || "Galpao",

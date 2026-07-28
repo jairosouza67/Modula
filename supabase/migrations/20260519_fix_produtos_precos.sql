@@ -1,7 +1,7 @@
 -- =============================================================================
 -- Migração: 20260519_fix_produtos_precos
 -- Objetivo: Corrigir preços dos produtos conforme planilha real
---           ORÇ VIDRAÇARIA ATUALIZADO (1).xlsm
+--           planilha base de precificação
 -- =============================================================================
 -- Contexto: A planilha foi re-extraída e vários preços divergiam do seed original.
 -- Esta migration atualiza os valores e adiciona produtos faltantes.

@@ -1,6 +1,6 @@
 -- =================================================================
 -- Sprint 12 — Configuração do Storage para XML de NFe
--- Vidraçaria TOP — 2026-05-12
+-- ModulaAPP — 2026-05-12
 -- =================================================================
 
 INSERT INTO storage.buckets (id, name, public)

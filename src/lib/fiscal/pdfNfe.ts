@@ -142,13 +142,13 @@ function logoSvgInline(): string {
   <rect x="20" y="14" width="36" height="28" rx="2" stroke="#1B9E3E" stroke-width="2" fill="none"/>
   <g transform="translate(28, 34)">
     <rect x="0" y="0" width="28" height="28" rx="3" stroke="#A7A9AC" stroke-width="2" fill="white"/>
-    <path d="M7 6 L14 22 L21 6" stroke="#1B9E3E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5 24 L10 8 L14 18 L18 8 L23 24" stroke="#1B9E3E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <text x="72" y="38" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" letter-spacing="0.5">
-    <tspan fill="#231F20">IDRA</tspan><tspan fill="#231F20">Ç</tspan><tspan fill="#231F20">ARIA</tspan>
+    <tspan fill="#231F20">MODU</tspan><tspan fill="#231F20">LA</tspan>
   </text>
   <text x="72" y="72" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" letter-spacing="1.5">
-    <tspan fill="#1B9E3E">O</tspan><tspan fill="#231F20">RNAMENT</tspan><tspan fill="#231F20">A</tspan><tspan fill="#1B9E3E">L</tspan>
+    <tspan fill="#1B9E3E">A</tspan><tspan fill="#231F20">PP</tspan>
   </text>
   <text x="105" y="92" font-family="Georgia, 'Times New Roman', serif" font-size="9" font-style="italic" fill="#6D6E71" letter-spacing="0.3">
     A natureza cria nós transformamos
@@ -483,7 +483,7 @@ export function renderHtmlNfe(nfe: NfeSaida, empresa: EmpresaData): string {
     </div>
 
     <div class="footer">
-      Documento de controle interno gerado pelo VidraERP. Sem valor fiscal perante a SEFAZ.<br/>
+      Documento de controle interno gerado pelo ModulaAPP. Sem valor fiscal perante a SEFAZ.<br/>
       Emissão legal requer certificado digital A1 e integração com webservice autorizador.
     </div>
   </div>

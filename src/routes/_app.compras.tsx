@@ -30,7 +30,7 @@ import { formatCurrency } from "@/lib/utils";
 export const Route = createFileRoute("/_app/compras")({
   head: () => ({
     meta: [
-      { title: "Compras — Vidraçaria Ornamental" },
+      { title: "Compras — ModulaAPP" },
       {
         name: "description",
         content:

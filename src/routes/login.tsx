@@ -199,7 +199,7 @@ function LoginPage() {
       <Card className="w-full max-w-md border-border/60">
         <CardHeader>
           <CardTitle className="text-xl">
-            {mode === "login" && "Entrar na Vidraçaria Ornamental"}
+            {mode === "login" && "Entrar no ModulaAPP"}
             {mode === "register" && "Criar conta"}
             {mode === "forgot" && "Recuperar acesso"}
           </CardTitle>

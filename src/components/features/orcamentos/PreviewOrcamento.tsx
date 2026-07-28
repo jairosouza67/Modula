@@ -15,7 +15,7 @@ export function PreviewOrcamento({ open, onClose, orcamento, tiposVidro, process
   const [kitImagens, setKitImagens] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    fetch('/images/logo-ornamental.png')
+    fetch('/images/logo-modula.png')
       .then(r => r.blob())
       .then(blob => {
         const reader = new FileReader();

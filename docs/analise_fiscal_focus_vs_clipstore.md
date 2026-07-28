@@ -42,7 +42,7 @@ A implementação fiscal está **completa e funcional**, com integração real v
 
 ```mermaid
 sequenceDiagram
-    participant UI as Frontend VidraERP
+    participant UI as Frontend ModulaAPP
     participant EF as Edge Function<br>(emitir-nfe)
     participant Focus as API Focus NFe
     participant SEFAZ as SEFAZ

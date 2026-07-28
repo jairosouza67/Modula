@@ -27,7 +27,7 @@ import type { OrcamentoItemV2 } from "@/lib/sales/types";
 import {
   calcularValorTotalLinha,
   calcularTotalOrcamento as calcularTotalOrcamentoV2,
-} from "@/lib/sales/calculadoraVidracaria";
+} from "@/lib/sales/calculadoraModula";
 import { listarServicosDisponiveis, resolverServico } from "@/lib/sales/resolverServico";
 import { exportarOrcamentoPDF } from "@/lib/sales/pdfOrcamento";
 import { useProdutosOrcamento } from "@/hooks/useProdutosOrcamento";
@@ -39,7 +39,7 @@ import { getDefaultEmpresaId } from "@/lib/supabase/company";
 export const Route = createFileRoute("/_app/orcamentos")({
   head: () => ({
     meta: [
-      { title: "Orçamentos — Vidraçaria Ornamental" },
+      { title: "Orçamentos — ModulaAPP" },
       { name: "description", content: "Gestão completa do ciclo de vendas, da proposta à conversão em OS." },
     ],
   }),

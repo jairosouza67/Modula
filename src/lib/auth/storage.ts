@@ -1,8 +1,8 @@
 import type { AuthSession, AuthUser, UserRole } from "./types";
 import { readJson, writeJson, isBrowser } from "@/lib/utils/localStorage";
 
-const AUTH_SESSION_KEY = "vidraerp:auth:session";
-const AUTH_USERS_KEY = "vidraerp:auth:users";
+const AUTH_SESSION_KEY = "modulaapp:auth:session";
+const AUTH_USERS_KEY = "modulaapp:auth:users";
 
 export interface MockAuthUser extends AuthUser {
   password: string;

@@ -28,7 +28,7 @@ import {
 export const Route = createFileRoute("/_app/producao")({
   head: () => ({
     meta: [
-      { title: "Produção — Vidraçaria Ornamental" },
+      { title: "Produção — ModulaAPP" },
       { name: "description", content: "Plano de corte, processamento e controle de qualidade." },
     ],
   }),

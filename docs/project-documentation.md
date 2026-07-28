@@ -1,8 +1,8 @@
- # Documentação do Projeto — AllVidros
+ # Documentação do Projeto — ModulaAPP
 
  Última atualização: 2026-05-31
 
- Este documento descreve a arquitetura, áreas funcionais, convenções e procedimentos operacionais do sistema AllVidros. Use-o como referência rápida para desenvolvimento, deploy e manutenção.
+ Este documento descreve a arquitetura, áreas funcionais, convenções e procedimentos operacionais do sistema ModulaAPP. Use-o como referência rápida para desenvolvimento, deploy e manutenção.
 
  ## Visão Geral
 

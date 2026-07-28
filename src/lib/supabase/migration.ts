@@ -2,7 +2,7 @@ import { getSupabaseBrowserClient } from "./client";
 import { getDefaultEmpresaId } from "./company";
 import { QueryClient } from "@tanstack/react-query";
 
-const CLIENTES_KEY = "vidraerp:crm:clientes";
+const CLIENTES_KEY = "modulaapp:crm:clientes";
 
 export async function migrateLocalClientesToSupabase(queryClient?: QueryClient) {
   const supabase = getSupabaseBrowserClient();

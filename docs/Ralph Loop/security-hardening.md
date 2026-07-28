@@ -1,6 +1,6 @@
 # 🔒 Ralph Loop — Security Hardening
 
-> **Projeto:** Vidraçaria Ornamental  
+> **Projeto:** ModulaAPP  
 > **Criado em:** 26/06/2026  
 > **Origem:** `docs/security-audit.md` (15 vulnerabilidades confirmadas)  
 > **Status Global:** 🔵 EM ANDAMENTO

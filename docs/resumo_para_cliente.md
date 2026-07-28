@@ -1,7 +1,7 @@
 # ✉️ O Que Preciso de Você — Integração NF-e no Sistema
 
-**Para:** Dono da Vidraçaria Ornamental  
-**De:** Desenvolvedor do Sistema VidraERP  
+**Para:** Dono da ModulaAPP  
+**De:** Desenvolvedor do Sistema ModulaAPP  
 **Assunto:** Itens necessários para o sistema emitir NF-e automaticamente
 
 ---

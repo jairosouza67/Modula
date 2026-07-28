@@ -19,7 +19,7 @@ import { createFileRoute as createRoute } from "@tanstack/react-router";
 export const Route = createRoute("/_app/financeiro")({
   head: () => ({
     meta: [
-      { title: "Financeiro — Vidraçaria Ornamental" },
+      { title: "Financeiro — ModulaAPP" },
       { name: "description", content: "DRE, fluxo de caixa, contas a receber e a pagar." },
     ],
   }),
@@ -47,7 +47,7 @@ function FinanceiroPage() {
 
     const dataAtual = new Date().toLocaleDateString("pt-BR");
     const csvContent = [
-      "Vidraçaria Ornamental - DRE Simplificado",
+      "ModulaAPP - DRE Simplificado",
       `Gerado em: ${dataAtual}`,
       "",
       "Descricao;Valor (R$)",

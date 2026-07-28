@@ -1,6 +1,6 @@
 import { readJson, writeJson, isBrowser } from "@/lib/utils/localStorage";
 
-const COMPANY_SETTINGS_KEY = "vidraerp:settings:company";
+const COMPANY_SETTINGS_KEY = "modulaapp:settings:company";
 
 export interface CompanySettings {
   razaoSocial: string;
@@ -23,8 +23,8 @@ export interface CompanySettings {
 }
 
 export const defaultCompanySettings: CompanySettings = {
-  razaoSocial: "Vidraçaria Ornamental Ltda",
-  nomeFantasia: "Vidraçaria Ornamental",
+  razaoSocial: "ModulaAPP Ltda",
+  nomeFantasia: "ModulaAPP",
   cnpj: "14.032.864/0001-08",
   endereco: "Av. Gil Ferreira Pessoa, Nº 70 - Matinha",
   cidade: "Livramento de Nossa Senhora - BA",

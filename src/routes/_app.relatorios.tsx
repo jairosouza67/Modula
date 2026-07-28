@@ -14,7 +14,7 @@ import { TabSuprimentos } from "@/components/features/relatorios/TabSuprimentos"
 export const Route = createFileRoute("/_app/relatorios")({
   head: () => ({
     meta: [
-      { title: "Relatórios / BI — Vidraçaria Ornamental" },
+      { title: "Relatórios / BI — ModulaAPP" },
       {
         name: "description",
         content: "Inteligência de negócio com análise de desempenho.",

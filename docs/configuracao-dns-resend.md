@@ -1,11 +1,11 @@
 # Guia Passo a Passo: Configuração de DNS no Resend
 
-Este guia orienta de forma simples e direta sobre como configurar as entradas DNS no seu provedor de domínio (como Hostinger, Registro.br, GoDaddy, Cloudflare, etc.) para ativar o envio de e-mails reais em produção através do Resend no **VidraERP**.
+Este guia orienta de forma simples e direta sobre como configurar as entradas DNS no seu provedor de domínio (como Hostinger, Registro.br, GoDaddy, Cloudflare, etc.) para ativar o envio de e-mails reais em produção através do Resend no **ModulaAPP**.
 
 ---
 
 ## 1. Por que essa configuração é necessária?
-O Resend impede o envio de e-mails usando domínios de terceiros (como `@gmail.com` ou `@hotmail.com`) por motivos de segurança anti-spam internacional. Para que o VidraERP possa enviar e-mails de Notas Fiscais diretamente para seus clientes, você precisa provar que é o proprietário do seu domínio adicionando registros DNS nele.
+O Resend impede o envio de e-mails usando domínios de terceiros (como `@gmail.com` ou `@hotmail.com`) por motivos de segurança anti-spam internacional. Para que o ModulaAPP possa enviar e-mails de Notas Fiscais diretamente para seus clientes, você precisa provar que é o proprietário do seu domínio adicionando registros DNS nele.
 
 ---
 
@@ -61,13 +61,13 @@ Informa aos servidores o que fazer se um e-mail não passar nos testes DKIM/SPF.
 
 ---
 
-## 5. Atualizando o VidraERP com seu Domínio
+## 5. Atualizando o ModulaAPP com seu Domínio
 
 Uma vez que o domínio esteja marcado como **Verified** no Resend:
 
 1. No terminal do projeto, configure o e-mail de envio oficial (remetente) rodando o seguinte comando:
    ```powershell
-   npx supabase secrets set RESEND_FROM_EMAIL="VidraERP <nfe@seudominio.com.br>"
+   npx supabase secrets set RESEND_FROM_EMAIL="ModulaAPP <nfe@seudominio.com.br>"
    ```
    *(Substitua `nfe@seudominio.com.br` pelo endereço que deseja usar como remetente)*.
 

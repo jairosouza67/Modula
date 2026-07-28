@@ -12,7 +12,7 @@
     -- =====================================================================
 
     -- Empresa e Fornecedor
-    INSERT INTO empresas (id, razao_social, cnpj) VALUES ('e0000000-0000-0000-0000-000000000001', 'Vidraçaria TOP Teste', '00000000000000');
+    INSERT INTO empresas (id, razao_social, cnpj) VALUES ('e0000000-0000-0000-0000-000000000001', 'ModulaAPP Teste', '00000000000000');
     INSERT INTO fornecedores (id, empresa_id, razao_social, cnpj) VALUES ('f0000000-0000-0000-0000-000000000001', 'e0000000-0000-0000-0000-000000000001', 'Fornecedor A', '11111111111111');
 
     -- Cliente e Orçamento

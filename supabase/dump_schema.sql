@@ -1271,7 +1271,7 @@ CREATE TABLE IF NOT EXISTS "public"."produtos" (
 ALTER TABLE "public"."produtos" OWNER TO "postgres";
 
 
-COMMENT ON TABLE "public"."produtos" IS 'Catálogo de produtos base (vidros, kits, ferragens) — valores extraídos da planilha ORÇ VIDRAÇARIA ATUALIZADO';
+COMMENT ON TABLE "public"."produtos" IS 'Catálogo de produtos base (vidros, kits, ferragens) — valores base históricos';
 
 
 

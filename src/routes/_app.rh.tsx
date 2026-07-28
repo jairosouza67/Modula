@@ -30,7 +30,7 @@ import { calcularFolha, alertaFerias } from "@/lib/rh/rh";
 export const Route = createFileRoute("/_app/rh")({
   head: () => ({
     meta: [
-      { title: "RH / Equipe — Vidraçaria Ornamental" },
+      { title: "RH / Equipe — ModulaAPP" },
       { name: "description", content: "Cadastro de colaboradores, ponto, folha e férias." },
     ],
   }),

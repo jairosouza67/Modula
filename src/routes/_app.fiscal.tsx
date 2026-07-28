@@ -77,7 +77,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/_app/fiscal")({
   head: () => ({
     meta: [
-      { title: "Fiscal / NF-e — Vidraçaria Ornamental" },
+      { title: "Fiscal / NF-e — ModulaAPP" },
       { name: "description", content: "Emissão de NF-e e obrigações acessórias." },
     ],
   }),

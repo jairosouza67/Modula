@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Vidraçaria Ornamental — Módulo Compras — Tipos (Fase 2.5)
+// ModulaAPP — Módulo Compras — Tipos (Fase 2.5)
 // ─────────────────────────────────────────────────────────────
 
 export type EtapaPedidoCompra =

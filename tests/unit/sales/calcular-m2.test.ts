@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calcularM2 } from "@/lib/sales/calculadoraVidracaria";
+import { calcularM2 } from "@/lib/sales/calculadoraModula";
 
 describe("T2.1 — calcularM2", () => {
   it("calcula m² = L × A × Q", () => {

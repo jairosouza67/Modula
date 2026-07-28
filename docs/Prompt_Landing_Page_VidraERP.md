@@ -1,4 +1,4 @@
-# Prompt — Landing Page de Vendas do VidraERP
+# Prompt — Landing Page de Vendas do ModulaAPP
 
 Use este documento como prompt completo para gerar a landing page (em uma IA de design/código, ou como briefing para um desenvolvedor/agência). Ele contém contexto, direção de copy, direção visual e especificação técnica.
 

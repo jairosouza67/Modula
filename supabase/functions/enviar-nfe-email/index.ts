@@ -5,7 +5,7 @@ import { corsHeaders, jsonResponse } from "../_shared/cors.ts";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
-const RESEND_FROM = Deno.env.get("RESEND_FROM_EMAIL") || "NF-e VidraERP <onboarding@resend.dev>";
+const RESEND_FROM = Deno.env.get("RESEND_FROM_EMAIL") || "NF-e ModulaAPP <onboarding@resend.dev>";
 
 function fmtCurrency(value: number): string {
   return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value || 0);
@@ -91,7 +91,7 @@ function buildEmailHtml(nfe: any, empresa: any): string {
 
     <!-- Footer -->
     <div style="padding:16px 24px;background:#f4f4f5;text-align:center;font-size:10px;color:#a1a1aa;">
-      Este e-mail foi enviado automaticamente pelo VidraERP.<br/>
+      Este e-mail foi enviado automaticamente pelo ModulaAPP.<br/>
       Em caso de dúvidas, entre em contato com ${empresa?.nome_fantasia || "a empresa"}${empresa?.telefone ? " — Tel: " + empresa.telefone : ""}.
     </div>
   </div>
@@ -145,7 +145,7 @@ serve(async (req) => {
 
   if (test) {
     html = `<p>${mensagem || "Its ok!!"}</p>`;
-    subject = "Teste Resend - VidraERP";
+    subject = "Teste Resend - ModulaAPP";
   } else {
     // 1. Busca dados da NF-e
     const { data: nfe, error: nfeErr } = await supabase
@@ -166,7 +166,7 @@ serve(async (req) => {
       .maybeSingle();
 
     html = buildEmailHtml(nfe, empresa);
-    const nomeEmpresa = empresa?.nome_fantasia || empresa?.razao_social || "VidraERP";
+    const nomeEmpresa = empresa?.nome_fantasia || empresa?.razao_social || "ModulaAPP";
     subject = `NF-e #${String(nfe.numero).padStart(9, "0")} — ${nomeEmpresa}`;
   }
 

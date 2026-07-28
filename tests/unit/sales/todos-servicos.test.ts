@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calcularValorTotalLinha } from "@/lib/sales/calculadoraVidracaria";
+import { calcularValorTotalLinha } from "@/lib/sales/calculadoraModula";
 import { listarCodigosServicos, resolverServico } from "@/lib/sales/resolverServico";
 
 describe("T2.11 — Todos os serviços", () => {

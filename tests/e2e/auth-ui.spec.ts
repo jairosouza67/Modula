@@ -6,7 +6,7 @@ test.describe("Tela de Login - UI", () => {
   });
 
   test("exibe formulário de login por padrão", async ({ page }) => {
-    await expect(page.getByRole("heading", { name: "Entrar no Vidraçaria TOP" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Entrar no ModulaAPP" })).toBeVisible();
     await expect(page.locator("#email")).toBeVisible();
     await expect(page.locator("#password")).toBeVisible();
     await expect(page.getByRole("button", { name: "Entrar" })).toBeVisible();
@@ -36,7 +36,7 @@ test.describe("Tela de Login - UI", () => {
     await expect(page.getByRole("heading", { name: "Criar conta" })).toBeVisible();
 
     await page.getByRole("button", { name: "Já tenho conta" }).click();
-    await expect(page.getByRole("heading", { name: "Entrar no Vidraçaria TOP" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Entrar no ModulaAPP" })).toBeVisible();
   });
 
   test("volta do formulário de recuperar senha para login", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe("Tela de Login - UI", () => {
     await expect(page.getByRole("heading", { name: "Recuperar acesso" })).toBeVisible();
 
     await page.getByRole("button", { name: "Voltar ao login" }).click();
-    await expect(page.getByRole("heading", { name: "Entrar no Vidraçaria TOP" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Entrar no ModulaAPP" })).toBeVisible();
   });
 
   test("exibe erro ao criar conta com senhas diferentes", async ({ page }) => {

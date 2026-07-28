@@ -13,7 +13,7 @@ test.describe("Auth - Supabase real", () => {
   test("login e logout com sessão persistida", async ({ page }) => {
     await page.goto("/login");
 
-    await expect(page.getByRole("heading", { name: "Entrar no Vidraçaria TOP" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Entrar no ModulaAPP" })).toBeVisible();
 
     await page.locator("#email").fill(userEmail ?? "");
     await page.locator("#password").fill(userPassword ?? "");
@@ -22,13 +22,13 @@ test.describe("Auth - Supabase real", () => {
     await expect(page).toHaveURL(/\/dashboard/);
     await expect(page.locator("#dashboard-btn-alertas")).toBeVisible();
 
-    const storedSession = await page.evaluate(() => window.localStorage.getItem("vidraerp:auth:session"));
+    const storedSession = await page.evaluate(() => window.localStorage.getItem("modulaapp:auth:session"));
     expect(storedSession).toBeTruthy();
 
     await page.getByRole("button", { name: "Sair" }).click();
     await expect(page).toHaveURL(/\/login/);
 
-    const clearedSession = await page.evaluate(() => window.localStorage.getItem("vidraerp:auth:session"));
+    const clearedSession = await page.evaluate(() => window.localStorage.getItem("modulaapp:auth:session"));
     expect(clearedSession).toBeNull();
   });
 });

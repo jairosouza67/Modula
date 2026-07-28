@@ -42,7 +42,7 @@ import { useProdutos } from "@/hooks/useProdutos";
 export const Route = createFileRoute("/_app/estoque")({
   head: () => ({
     meta: [
-      { title: "Estoque — Vidraçaria Ornamental" },
+      { title: "Estoque — ModulaAPP" },
       { name: "description", content: "Controle de chapas, ferragens, perfis e consumíveis." },
     ],
   }),

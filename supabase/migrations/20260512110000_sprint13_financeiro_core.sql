@@ -1,6 +1,6 @@
 -- =================================================================
 -- Sprint 13 — Financeiro Core: Plano de Contas, Contas e Lançamentos
--- Vidraçaria TOP — 2026-05-12
+-- ModulaAPP — 2026-05-12
 -- =================================================================
 
 -- ── 1. Plano de Contas (Categorias Financeiras) ───────────────

@@ -200,6 +200,24 @@ export function useEstoqueMutations() {
 
       if (movError) throw movError;
 
+      // Atualiza a quantidade do item: Entrada soma, Saída subtrai.
+      const { data: item, error: itemErr } = await supabase
+        .from("estoque_itens")
+        .select("quantidade")
+        .eq("id", mov.itemId)
+        .single();
+
+      if (itemErr) throw itemErr;
+
+      const atual = item?.quantidade ?? 0;
+      const delta = mov.tipo === "Saída" || mov.tipo === "Saida" ? -mov.quantidade : mov.quantidade;
+      const { error: updErr } = await supabase
+        .from("estoque_itens")
+        .update({ quantidade: atual + delta })
+        .eq("id", mov.itemId);
+
+      if (updErr) throw updErr;
+
       return movimentacao;
     },
     onSuccess: () => {

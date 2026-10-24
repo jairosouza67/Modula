@@ -106,6 +106,37 @@ export function useAgenda(date: Date = new Date(), viewMode: "semana" | "mes" = 
   });
 }
 
+export function useAgendaSemanal(date: Date = new Date()) {
+  const supabase = getSupabaseBrowserClient();
+  const empresaId = getDefaultEmpresaId();
+  const start = startOfWeek(date, { weekStartsOn: 1 });
+  const end = endOfWeek(date, { weekStartsOn: 1 });
+
+  return useQuery({
+    queryKey: ["agenda-semanal", empresaId, format(start, "yyyy-MM-dd")],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("ordens_servico")
+        .select(
+          `
+          *,
+          cliente:clientes(nome, endereco),
+          tecnico:colaboradores!ordens_servico_tecnico_id_fkey(id, nome)
+        `,
+        )
+        .eq("empresa_id", empresaId)
+        .is("deleted_at", null)
+        .gte("data_previsao", format(start, "yyyy-MM-dd"))
+        .lte("data_previsao", format(end, "yyyy-MM-dd"))
+        .order("data_previsao", { ascending: true });
+
+      if (error) throw error;
+      return data || [];
+    },
+    enabled: !!empresaId,
+  });
+}
+
 export function useInstaladoresStats() {
   const supabase = getSupabaseBrowserClient();
   const empresaId = getDefaultEmpresaId();

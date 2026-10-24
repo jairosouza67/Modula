@@ -15,33 +15,35 @@ export function useColaboradores() {
   const empresaId = getDefaultEmpresaId();
   const queryClient = useQueryClient();
 
+  const queryFn = async () => {
+    const { data, error } = await supabase
+      .from("colaboradores")
+      .select("*")
+      .eq("empresa_id", empresaId)
+      .order("nome", { ascending: true });
+
+    if (error) throw error;
+
+    // Map snake_case from DB to camelCase for the UI
+    return (data || []).map((item) => ({
+      id: item.id,
+      nome: item.nome,
+      cpf: item.cpf,
+      cargo: item.cargo,
+      salario: item.salario,
+      status: item.status,
+      dataAdmissao: item.data_admissao,
+      dataDemissao: item.data_demissao,
+      dataLimiteFerias: item.data_limite_ferias,
+      horasExtrasMes: item.horas_extras_mes,
+      telefone: item.telefone,
+      email: item.email,
+    }));
+  };
+
   const query = useQuery({
     queryKey: ["colaboradores", empresaId],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("colaboradores")
-        .select("*")
-        .eq("empresa_id", empresaId)
-        .order("nome", { ascending: true });
-
-      if (error) throw error;
-
-      // Map snake_case from DB to camelCase for the UI
-      return (data || []).map((item) => ({
-        id: item.id,
-        nome: item.nome,
-        cpf: item.cpf,
-        cargo: item.cargo,
-        salario: item.salario,
-        status: item.status,
-        dataAdmissao: item.data_admissao,
-        dataDemissao: item.data_demissao,
-        dataLimiteFerias: item.data_limite_ferias,
-        horasExtrasMes: item.horas_extras_mes,
-        telefone: item.telefone,
-        email: item.email,
-      }));
-    },
+    queryFn,
     enabled: !!empresaId,
   });
 
@@ -122,6 +124,7 @@ export function useColaboradores() {
     data: query.data || [],
     isLoading: query.isLoading,
     error: query.error,
+    queryFn,
     createColaborador: createMutation.mutateAsync,
     updateColaborador: updateMutation.mutateAsync,
     deleteColaborador: deleteMutation.mutateAsync,

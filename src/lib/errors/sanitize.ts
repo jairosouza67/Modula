@@ -1,5 +1,15 @@
+function extractMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  if (typeof error === "string") return error;
+  if (error && typeof error === "object" && "message" in error) {
+    const msg = (error as { message: unknown }).message;
+    if (typeof msg === "string") return msg;
+  }
+  return String(error);
+}
+
 export function userFriendlyError(context: string, error: unknown): string {
-  const technical = error instanceof Error ? error.message : String(error);
+  const technical = extractMessage(error);
 
   if (import.meta.env.DEV) {
     return `${context}: ${technical}`;
